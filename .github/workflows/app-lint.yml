@@ -1,0 +1,18 @@
+name: App Lint
+on: [push]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: jdx/mise-action@v4
+        with:
+          cache_key: "mise-v1-{{platform}}-{{install_args_hash}}-{{file_hash}}"
+          install_args: "node pnpm"
+      - run: |
+          cd app
+          node -v
+          pnpm -v
+          pnpm i --frozen-lockfile
+          pnpm lint
