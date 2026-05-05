@@ -14,5 +14,6 @@ jobs:
           cd app
           node -v
           pnpm -v
+          hasura version
           pnpm i --frozen-lockfile
           pnpm lint
