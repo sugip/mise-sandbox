@@ -1,8 +1,8 @@
-name: App Lint
+name: Lambda Test
 on: [push]
 
 jobs:
-  lint:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -10,10 +10,10 @@ jobs:
         with:
           cache_key: "mise-v1-{{platform}}-{{install_args_hash}}-{{file_hash}}"
           # 以下のargs指定でhasuraなどのappのtestやlintに不要なツールはインストールされないことを確認済
-          install_args: "node pnpm"
+          install_args: "node npm"
       - run: |
-          cd app
           node -v
-          pnpm -v
-          pnpm i --frozen-lockfile
-          pnpm lint
+          npm -v
+          npm ci
+          npm run unit
+        working-directory: lambda/hello-world

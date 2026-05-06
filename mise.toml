@@ -1,4 +1,6 @@
 [tools]
+aws-sam = { version = "1.159.1", symlink_bins = "true" }
 hasura-cli = "2.27.0"
 node = "24.15.0"
-pnpm = "9.15.9"
+npm = "11.13.0" # for lambda
+pnpm = "9.15.9" # for app
